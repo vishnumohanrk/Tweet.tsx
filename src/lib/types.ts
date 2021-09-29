@@ -19,6 +19,7 @@ export type TTweetInfo = {
 
 export type TMedia = {
   media_key: string;
+  alt_text?: string;
 } & (
   | {
       type: 'photo';

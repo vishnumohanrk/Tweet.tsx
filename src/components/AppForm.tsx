@@ -33,11 +33,16 @@ export const AppForm = ({ push }: AppFormProps) => {
     <form onSubmit={handleSubmit} className="w-full md:w-3/5 relative mb-6">
       <input
         required
-        type="search"
+        type="text"
         ref={inputRef}
+        id="formInput"
         placeholder="Enter Tweet ID/URL"
         className="w-full pl-14 p-3 rounded-full bg-tertiaryBg focus:bg-primaryBg focus-visible:outline-none focus:ring-2 focus:ring-accent peer"
       />
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label htmlFor="formInput" className="sr-only">
+        Enter Tweet ID/URL
+      </label>
       <button
         type="submit"
         aria-label="Search"
