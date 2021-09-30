@@ -17,7 +17,12 @@ export const AppForm = ({ push }: AppFormProps) => {
 
       try {
         const tweetURL = new URL(inp);
-        id = tweetURL.pathname.split('/').at(-1)!;
+        const arr = tweetURL.pathname.split('/');
+        const statusIndex = arr.findIndex(i => i === 'status');
+
+        if (statusIndex === -1) throw new Error();
+
+        id = arr[statusIndex + 1];
       } catch (error) {
         id = inp;
       }
