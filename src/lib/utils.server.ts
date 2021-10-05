@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { format } from 'date-fns';
 import TwitterText from 'twitter-text';
 
 import { TTweet } from './types';
@@ -26,8 +27,8 @@ export const getTweet = async (id: string): Promise<TTweet> => {
     id: respTweet.id,
     info: {
       source: respTweet.source,
-      time: respDate.toLocaleTimeString(),
-      date: respDate.toDateString().slice(4),
+      time: format(respDate, 'h:mm b'),
+      date: format(respDate, 'MMM d, yyyy'),
     },
     text: TwitterText.autoLink(respTweet.text, {
       usernameIncludeSymbol: true,

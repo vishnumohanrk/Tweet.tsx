@@ -10,7 +10,7 @@ const handler: THandler = async (req, res) => {
     res.setHeader('Cache-Control', 'max-age=0, s-maxage=1200');
     res.json(await getTweet(req.query.id as string));
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ error: JSON.stringify(error) });
   }
 };
