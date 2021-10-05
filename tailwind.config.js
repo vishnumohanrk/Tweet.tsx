@@ -26,6 +26,10 @@ module.exports = {
       secondaryText: '#6e767d',
       border: '#2f3336',
       accent: '#794bc4',
+
+      pink: '#f91880',
+      green: '#00ba7c',
+      blue: '#1d9bf0',
     },
 
     borderColor: theme => ({

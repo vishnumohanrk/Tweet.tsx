@@ -7,6 +7,7 @@ import { TwitterLink } from '../TwitterLink';
 import { TweetBody } from './TweetBody';
 import { TweetHeader } from './TweetHeader';
 import { TweetInfo } from './TweetInfo';
+import { TweetIntent } from './TweetIntent';
 import { TweetMedia } from './TweetMedia';
 import { TweetStats } from './TweetStats';
 
@@ -27,7 +28,7 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
 
   return (
     <article
-      className={`border rounded text-sm w-full max-w-[568px] p-4 ${
+      className={`border rounded text-sm w-full max-w-[568px] p-4 pb-0 ${
         isQuoted ? 'mt-2' : ''
       }`}
     >
@@ -37,9 +38,10 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
       {quoteTweetID && !isQuoted ? <Tweet id={quoteTweetID} isQuoted /> : null}
       <TweetInfo id={respID} {...info} />
       <TweetStats id={respID} stats={stats} />
+      <TweetIntent id={respID} />
       <TwitterLink
         path={`i/status/${respID}`}
-        className="flex justify-center hover:text-accent hover:underline mt-4 font-semibold text-base"
+        className="flex justify-center hover:text-accent hover:underline py-4 font-semibold text-base"
       >
         View on Twitter
       </TwitterLink>

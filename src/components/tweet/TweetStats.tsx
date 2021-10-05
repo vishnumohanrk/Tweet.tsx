@@ -8,7 +8,7 @@ type TweetStatsProps = {
 
 export const TweetStats = ({ stats, id }: TweetStatsProps) =>
   Object.values(stats).some(Boolean) ? (
-    <div className="flex space-x-4 py-3.5 border-b border-t">
+    <div className="flex space-x-4 py-3.5 border-b">
       {Object.entries(stats).map(([label, value]) =>
         value ? (
           <TwitterLink

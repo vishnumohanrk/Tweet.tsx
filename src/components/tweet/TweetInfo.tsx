@@ -9,7 +9,7 @@ export const TweetInfo = (props: TweetInfoProps) => {
   const { date, source, time, id } = props;
 
   return (
-    <div className="flex py-3.5 text-secondaryText">
+    <div className="flex py-3.5 text-secondaryText border-b">
       <TwitterLink path={`i/status/${id}`} className="flex hover:underline">
         <span>{time}</span>
         &nbsp;·&nbsp;
