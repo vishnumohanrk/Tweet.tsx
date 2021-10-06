@@ -12,9 +12,11 @@ export const TweetMedia = ({ data, id }: TweetMediaProps) => {
   return (
     <TwitterLink
       path={`i/status/${id}`}
-      style={{ aspectRatio: '16/9' }}
       aria-label="View Tweet on Twitter"
-      className={`w-full grid gap-0.5 mt-4 rounded-2xl overflow-hidden ${
+      style={{
+        aspectRatio: data.length !== 1 ? '16/9' : undefined,
+      }}
+      className={`w-full grid gap-0.5 mt-4 rounded-2xl overflow-hidden border ${
         data.length === 1 ? 'grid-cols-1' : 'grid-cols-2'
       }`}
     >
@@ -22,7 +24,9 @@ export const TweetMedia = ({ data, id }: TweetMediaProps) => {
         <img
           key={i.media_key}
           alt={i.alt_text || 'Image'}
-          style={{ aspectRatio: '16/9' }}
+          style={{
+            aspectRatio: data.length !== 1 ? '16/9' : `${i.width / i.height}`,
+          }}
           className={`w-full h-full object-cover ${
             data.length === 3 && j === 0 ? 'row-span-2' : ''
           }`}

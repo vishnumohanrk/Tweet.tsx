@@ -1,5 +1,5 @@
 import type { Router } from 'next/router';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 type AppFormProps = {
   push: Router['push'];
@@ -7,6 +7,10 @@ type AppFormProps = {
 
 export const AppForm = ({ push }: AppFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

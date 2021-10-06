@@ -10,7 +10,8 @@ export const getTweet = async (id: string): Promise<TTweet> => {
     {
       headers: { Authorization: `Bearer ${process.env.TWITTER_KEY}` },
       params: {
-        'media.fields': 'media_key,preview_image_url,type,url,alt_text',
+        'media.fields':
+          'media_key,preview_image_url,type,url,alt_text,height,width',
         expansions: 'author_id,attachments.media_keys,referenced_tweets.id',
         'user.fields': 'name,profile_image_url,username,verified',
         'tweet.fields':

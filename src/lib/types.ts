@@ -18,6 +18,8 @@ export type TTweetInfo = {
 };
 
 export type TMedia = {
+  width: number;
+  height: number;
   media_key: string;
   alt_text?: string;
 } & (
