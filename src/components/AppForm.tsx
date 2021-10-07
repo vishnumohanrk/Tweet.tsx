@@ -2,15 +2,20 @@ import type { Router } from 'next/router';
 import { useEffect, useRef } from 'react';
 
 type AppFormProps = {
+  asPath: string;
   push: Router['push'];
 };
 
-export const AppForm = ({ push }: AppFormProps) => {
+export const AppForm = ({ push, asPath }: AppFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, []);
+
+    if (asPath === '/' && inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [asPath]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -28,7 +28,7 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
 
   return (
     <article
-      className={`border rounded text-sm w-full max-w-[568px] p-4 pb-0 ${
+      className={`border-t border-b sm:border-r sm:border-l sm:rounded text-sm w-full sm:max-w-[598px] p-4 pb-0 ${
         isQuoted ? 'mt-2' : ''
       }`}
     >
