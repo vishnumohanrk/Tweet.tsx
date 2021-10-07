@@ -17,13 +17,13 @@ export const TweetHeader = (props: TTweetAuthor) => {
       </TwitterLink>
       <TwitterLink
         path={userName}
-        className="flex flex-col ml-2 self-center group"
+        className="flex flex-1 flex-col ml-2 self-center group"
       >
         <p
           title={name}
-          className="flex items-center truncate font-bold group-hover:underline"
+          className="flex items-center font-bold group-hover:underline"
         >
-          {name}
+          <span className="line-clamp-1">{name}</span>
           {isVerified ? (
             // https://icones.js.org/
             <svg className="ml-0.5" width="17" height="17" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ export const TweetHeader = (props: TTweetAuthor) => {
             </svg>
           ) : null}
         </p>
-        <p className="text-secondaryText">@{userName}</p>
+        <p className="text-secondaryText line-clamp-1">@{userName}</p>
       </TwitterLink>
     </div>
   );
