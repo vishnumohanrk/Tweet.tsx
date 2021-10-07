@@ -5,15 +5,23 @@ type TweetInfoProps = TTweetInfo & {
   id: string;
 };
 
-export const TweetInfo = (props: TweetInfoProps) => {
-  const { date, source, time, id } = props;
+export const TweetInfo = ({ source, created_at, id }: TweetInfoProps) => {
+  const date = new Date(created_at);
 
   return (
     <div className="flex py-3.5 text-secondaryText border-b">
       <TwitterLink path={`i/status/${id}`} className="flex hover:underline">
-        <span>{time}</span>
+        <span>
+          {date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </span>
         &nbsp;·&nbsp;
-        <span>{date}</span>
+        <span>
+          {date.toLocaleDateString([], {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          })}
+        </span>
       </TwitterLink>
       &nbsp;·&nbsp;
       <a

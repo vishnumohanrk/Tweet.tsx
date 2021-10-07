@@ -12,9 +12,8 @@ export type TTweetStats = {
 };
 
 export type TTweetInfo = {
-  time: string;
-  date: string;
   source: string;
+  created_at: string;
 };
 
 export type TMedia = {
