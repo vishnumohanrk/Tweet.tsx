@@ -15,7 +15,7 @@ export const TweetPoll = ({ pollObject, id }: TweetPollProps) => {
   const max = isOver && Math.max(...options.map(i => i.votes));
 
   return (
-    <TwitterLink path={`i/status/${id}`} aria-label="View Poll on Twitter">
+    <>
       <div className="py-3 space-y-1">
         {options.map(({ label, position, votesPercent, votes }) => (
           <div
@@ -35,13 +35,13 @@ export const TweetPoll = ({ pollObject, id }: TweetPollProps) => {
           </div>
         ))}
       </div>
-      <div className="text-secondaryText flex">
+      <div className="text-secondaryText text-sm flex">
         <p>
           {totalVotes.toLocaleString('en-US')} vote{totalVotes === 1 ? '' : 's'}
         </p>
         &nbsp;·&nbsp;
         <p>{status}</p>
       </div>
-    </TwitterLink>
+    </>
   );
 };

@@ -7,7 +7,7 @@ type THandler = NextApiHandler<TTweet | { error: string }>;
 
 const handler: THandler = async (req, res) => {
   try {
-    res.setHeader('Cache-Control', 'max-age=0, s-maxage=1200');
+    res.setHeader('Cache-Control', 'max-age=0, s-maxage=120');
     res.json(await getTweet(req.query.id as string));
   } catch (error) {
     // console.log(error);
