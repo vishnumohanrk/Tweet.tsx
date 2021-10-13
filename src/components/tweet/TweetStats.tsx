@@ -19,7 +19,10 @@ export const TweetStats = ({ stats, id }: TweetStatsProps) =>
             }`}
           >
             <span className="font-bold">{value.toLocaleString('en-US')}</span>
-            <span className="text-secondaryText capitalize"> {label}</span>
+            <span className="text-secondaryText capitalize">
+              {' '}
+              {value === 1 ? label.replace('s', '') : label}
+            </span>
           </TwitterLink>
         ) : null,
       )}

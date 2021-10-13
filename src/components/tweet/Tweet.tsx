@@ -8,6 +8,7 @@ import { TweetHeader } from './TweetHeader';
 import { TweetInfo } from './TweetInfo';
 import { TweetIntent } from './TweetIntent';
 import { TweetMedia } from './TweetMedia';
+import { TweetPoll } from './TweetPoll';
 import { TweetStats } from './TweetStats';
 
 type TweetCompProps = {
@@ -23,7 +24,16 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
 
   if (!data) return <Spinner />;
 
-  const { author, info, stats, text, id: respID, media, quoteTweetID } = data;
+  const {
+    author,
+    info,
+    stats,
+    text,
+    id: respID,
+    media,
+    quoteTweetID,
+    polls,
+  } = data;
 
   return (
     <article
@@ -38,6 +48,7 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
         {quoteTweetID && !isQuoted ? (
           <Tweet id={quoteTweetID} isQuoted />
         ) : null}
+        <TweetPoll pollObject={polls} id={respID} />
         <TweetInfo id={respID} {...info} />
         <TweetStats id={respID} stats={stats} />
       </div>

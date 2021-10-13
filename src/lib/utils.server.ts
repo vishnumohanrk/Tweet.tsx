@@ -1,7 +1,11 @@
 import axios from 'axios';
+import { formatDistanceToNowStrict } from 'date-fns';
 import TwitterText from 'twitter-text';
 
-import { TTweet } from './types';
+import { TPollOption, TTweet } from './types';
+
+const getPercent = (val: number, total: number) =>
+  `${total === 0 ? 0 : ((val / total) * 100).toFixed(1).replace('.0', '')}%`;
 
 export const getTweet = async (id: string): Promise<TTweet> => {
   const { data: resp } = await axios.get(
@@ -11,12 +15,20 @@ export const getTweet = async (id: string): Promise<TTweet> => {
       params: {
         'media.fields':
           'media_key,preview_image_url,type,url,alt_text,height,width',
-        expansions: 'author_id,attachments.media_keys,referenced_tweets.id',
+        expansions:
+          'author_id,attachments.media_keys,attachments.poll_ids,referenced_tweets.id',
+        'poll.fields': 'end_datetime,voting_status,options,id',
         'user.fields': 'name,profile_image_url,username,verified',
         'tweet.fields':
           'author_id,created_at,id,public_metrics,text,source,attachments,referenced_tweets,entities',
       },
     },
+  );
+
+  const pollObject = resp.includes?.polls?.[0];
+  const totalVotes = (pollObject?.options as TPollOption[])?.reduce(
+    (i, j) => i + j.votes,
+    0,
   );
 
   const respAuthor = resp.includes.users[0];
@@ -47,5 +59,18 @@ export const getTweet = async (id: string): Promise<TTweet> => {
     quoteTweetID: respTweet?.referenced_tweets?.find(
       (i: any) => i.type === 'quoted',
     )?.id,
+    polls: pollObject && {
+      totalVotes,
+      options: (pollObject.options as TPollOption[]).map(i => ({
+        ...i,
+        votesPercent: getPercent(i.votes, totalVotes),
+      })),
+      status:
+        pollObject.voting_status === 'closed'
+          ? 'Final results'
+          : `${formatDistanceToNowStrict(new Date(pollObject?.end_datetime), {
+              roundingMethod: 'floor',
+            })} left`,
+    },
   };
 };

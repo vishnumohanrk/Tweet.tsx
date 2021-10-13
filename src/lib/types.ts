@@ -32,6 +32,19 @@ export type TMedia = {
     }
 );
 
+export type TPollOption = {
+  votes: number;
+  label: string;
+  position: number;
+  votesPercent: string;
+};
+
+export type TPoll = {
+  status: string;
+  totalVotes: number;
+  options: TPollOption[];
+};
+
 export type TTweet = {
   id: string;
   text: string;
@@ -39,5 +52,6 @@ export type TTweet = {
   stats: TTweetStats;
   author: TTweetAuthor;
   media: TMedia[];
+  polls?: TPoll;
   quoteTweetID: string | undefined;
 };
