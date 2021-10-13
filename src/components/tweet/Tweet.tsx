@@ -3,7 +3,6 @@ import useSWR from 'swr';
 import { TTweet } from '../../lib/types';
 import { fetcher } from '../../lib/utils.client';
 import { Spinner } from '../Spinner';
-import { TwitterLink } from '../TwitterLink';
 import { TweetBody } from './TweetBody';
 import { TweetHeader } from './TweetHeader';
 import { TweetInfo } from './TweetInfo';
@@ -28,23 +27,21 @@ export const Tweet = ({ id, isQuoted }: TweetCompProps) => {
 
   return (
     <article
-      className={`border-t border-b sm:border-r sm:border-l sm:rounded text-sm w-full sm:max-w-[598px] p-4 pb-0 ${
+      className={`border-t border-b sm:border-r sm:border-l sm:rounded md:text-sm w-full sm:max-w-[598px] ${
         isQuoted ? 'mt-2 border rounded' : ''
       }`}
     >
-      <TweetHeader {...author} />
-      <TweetBody text={text} />
-      <TweetMedia id={respID} data={media} />
-      {quoteTweetID && !isQuoted ? <Tweet id={quoteTweetID} isQuoted /> : null}
-      <TweetInfo id={respID} {...info} />
-      <TweetStats id={respID} stats={stats} />
+      <div className="px-4 pt-4">
+        <TweetHeader {...author} />
+        <TweetBody text={text} />
+        <TweetMedia id={respID} data={media} />
+        {quoteTweetID && !isQuoted ? (
+          <Tweet id={quoteTweetID} isQuoted />
+        ) : null}
+        <TweetInfo id={respID} {...info} />
+        <TweetStats id={respID} stats={stats} />
+      </div>
       <TweetIntent id={respID} />
-      <TwitterLink
-        path={`i/status/${respID}`}
-        className="flex justify-center hover:text-accent hover:underline py-4 font-semibold text-base"
-      >
-        View on Twitter
-      </TwitterLink>
     </article>
   );
 };

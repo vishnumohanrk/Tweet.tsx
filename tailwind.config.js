@@ -30,6 +30,7 @@ module.exports = {
       pink: '#f91880',
       green: '#00ba7c',
       blue: '#1d9bf0',
+      twitter: '#1DA1F2',
     },
 
     borderColor: theme => ({
